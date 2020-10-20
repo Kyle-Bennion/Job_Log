@@ -31,7 +31,7 @@ namespace JobLog.Repositories
     }
     internal Contractor Edit(Contractor updated)
     {
-      string sql = @"UPDATE contractors SET name = @Name, address = @Address, contact=@Contact, skills=@Skills, WHERE id=@Id;";
+      string sql = @"UPDATE contractors SET name = @Name, address = @Address, contact=@Contact, skills=@Skills WHERE id=@Id;";
       _db.Execute(sql, updated);
       return updated;
     }
