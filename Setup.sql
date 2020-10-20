@@ -8,7 +8,7 @@
 -- -- PRIMARY KEY (id)
 -- -- );
 
--- SELECT * FROM jobs;
+-- SELECT * FROM contractors;
 
 -- CREATE TABLE contractors
 -- (
@@ -16,9 +16,9 @@
 -- name VARCHAR(255)NOT NULL,
 -- contact VARCHAR(255)NOT NULL,
 -- address VARCHAR(255),
--- skills VARCHAR(255)
+-- skills VARCHAR(255),
+
 
 -- PRIMARY KEY (id)
-
 -- );
 -- DROP TABLE contractors;
