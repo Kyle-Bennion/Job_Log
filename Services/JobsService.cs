@@ -34,11 +34,12 @@ namespace JobLog.Services
       var data = GetById(updated.Id);
       return _repo.Edit(updated);
     }
-    internal string Deleted(int id)
+    internal string Delete(int id)
     {
-      var data = GetById(int id);
+      var data = GetById(id);
       _repo.Delete(id);
       return "Deleted This Crap";
+
     }
   }
 }
