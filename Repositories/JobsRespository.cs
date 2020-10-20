@@ -36,5 +36,9 @@ namespace JobLog.Repositories
       string sql = @"UPDATE jobs SET location = @Location, description = @Description, contact = @Contact WHERE id = @Id;"; _db.Execute(sql, updated);
       return updated;
     }
+    internal void Delete(int id)
+    {
+      string sql = "DELETE FROM jobs WHERE id = @id"; _db.Execute(sql, new { id });
+    }
   }
 }
