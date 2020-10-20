@@ -33,6 +33,8 @@ namespace JobLog
       services.AddControllers();
       services.AddTransient<JobsService>();
       services.AddTransient<JobsRespository>();
+      services.AddTransient<ContractorsService>();
+      services.AddTransient<ContractorsRepository>();
     }
     private IDbConnection CreateDbConnection()
     {
