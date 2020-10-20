@@ -51,7 +51,7 @@ namespace JobLog.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpPut]
+    [HttpPut("{id}")]
     public ActionResult<Contractor> Edit([FromBody] Contractor updated, int id)
     {
       try

@@ -12,6 +12,7 @@
 
 -- CREATE TABLE contractors
 -- (
+-- id INT NOT NULL AUTO_INCREMENT,
 -- name VARCHAR(255)NOT NULL,
 -- contact VARCHAR(255)NOT NULL,
 -- address VARCHAR(255),
@@ -20,3 +21,4 @@
 -- PRIMARY KEY (id)
 
 -- );
+-- DROP TABLE contractors;
