@@ -9,6 +9,7 @@ namespace JobLog.Models
     public string Body { get; set; }
     [Range(1, 5)]
     public int Rating { get; set; }
+    public string Date { get; set; }
     public int ContractorId { get; set; }
   }
 }
