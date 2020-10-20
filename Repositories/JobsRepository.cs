@@ -10,7 +10,7 @@ namespace JobLog.Repositories
   {
 
     private readonly IDbConnection _db;
-    public JobsRepository(IDbConnection db)
+    public JobsRespository(IDbConnection db)
     {
       _db = db;
     }

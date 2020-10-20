@@ -1,12 +1,14 @@
+using System;
 using System.Collections.Generic;
 using JobLog.Models;
+using JobLog.Repositories;
 
 namespace JobLog.Services
 {
   public class JobsService
   {
-    private readonly JobsRepository _repo;
-    public JobsService(JobsRepository repo)
+    private readonly JobsRespository _repo;
+    public JobsService(JobsRespository repo)
     {
       _repo = repo;
     }
