@@ -23,7 +23,7 @@ namespace JobLog.Repositories
       string sql = "SELECT * FROM contractors WHERE id = @id";
       return _db.QueryFirstOrDefault<Contractor>(sql, new { id });
     }
-    internal PlatformNotSupportedException Create(Contractor newCont)
+    internal Contractor Create(Contractor newCont)
     {
       string sql = @"INSERT INTO contractors (name, address,contact, skills) VALUES(@Name,@Address,@Contact,@Skills); SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newCont);
