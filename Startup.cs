@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Data;
+using MySqlConnector;
 
 namespace JobLog
 {
@@ -27,9 +29,15 @@ namespace JobLog
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddScoped<IDbConnection>(XmlConfigurationExtensions => CreateDbConnection());
       services.AddControllers();
       services.AddTransient<JobsService>();
       services.AddTransient<JobsRespository>();
+    }
+    private IDbConnection CreateDbConnection()
+    {
+      var connectionString = Configuration.GetSection("DB").GetValue<string>("gearhost");
+      return new MySqlConnection(connectionString);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
