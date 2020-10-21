@@ -38,7 +38,7 @@ namespace JobLog.Services
       {
         throw new Exception("Bad Request");
       }
-      update.ProductId = original.ProductId;
+      update.ContractorId = original.ContractorId;
       update.Title = update.Title != null ? update.Title : original.Title;
       update.Body = update.Body != null ? update.Body : original.Body;
 
@@ -53,18 +53,18 @@ namespace JobLog.Services
         throw new Exception("Bad Request");
       }
       _repo.Delete(id);
-      return "Successfully Deleted";
+      return "Successfully Deleteeed";
     }
 
-    internal IEnumerable<Review> GetByProductId(int id)
+    internal IEnumerable<Review> GetByContractorId(int id)
     {
       // RULE Check that the parent id exists before fetching children
-      var prod = _prodRepo.GetById(id);
+      var prod = _contRepo.GetById(id);
       if (prod == null)
       {
-        throw new Exception("Invalid Product Id");
+        throw new Exception("Invalid Contractor Id");
       }
-      return _repo.GetByProductId(id);
+      return _repo.GetByContractorId(id);
     }
   }
 }
