@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Data;
 using MySqlConnector;
+using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace JobLog
 {
@@ -30,6 +32,29 @@ namespace JobLog
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddScoped<IDbConnection>(XmlConfigurationExtensions => CreateDbConnection());
+      services.AddAuthentication(options =>
+            {
+              options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+              options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+              {
+                options.Authority = $"https://{Configuration["Auth0:Domain"]}/";
+                options.Audience = Configuration["Auth0:Audience"];
+              });
+      services.AddCors(options =>
+      {
+        options.AddPolicy("CorsDevPolicy", builder =>
+              {
+                builder
+                          .WithOrigins(new string[]{
+                            "http://localhost:8080",
+                            "http://localhost:8081"
+                          })
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
+              });
+      });
       services.AddControllers();
       services.AddTransient<JobsService>();
       services.AddTransient<JobsRespository>();
@@ -48,12 +73,14 @@ namespace JobLog
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        app.UseCors("CorsDevPolicy");
       }
+      Auth0ProviderExtension.ConfigureKeyMap(new List<string>() { "id" });
 
       app.UseHttpsRedirection();
 
       app.UseRouting();
-
+      app.UseAuthentication();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
