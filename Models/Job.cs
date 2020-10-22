@@ -14,4 +14,8 @@ namespace JobLog.Models
     public int Id { get; set; }
 
   }
+  public class BidViewModel : Bid
+  {
+    public int BidId { get; set; }
+  }
 }

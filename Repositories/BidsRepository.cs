@@ -26,5 +26,10 @@ namespace JobLog.Repositories
       string sql = "SELECT * FROM bids WHERE id = @id;";
       return _db.QueryFirstOrDefault<Bid>(sql, new { id });
     }
+    internal void Delete(int id)
+    {
+      string sql = "DELETE FROM bids WHERE id = @id LIMIT 1;";
+      _db.Execute(sql, new { id });
+    }
   }
 }
