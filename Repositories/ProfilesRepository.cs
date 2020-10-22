@@ -4,7 +4,7 @@ using System.Data;
 using JobLog.Models;
 using Dapper;
 
-namespace AmaZen.Repositories
+namespace JobLog.Repositories
 {
   public class ProfilesRepository
   {

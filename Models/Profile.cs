@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AmaZen.Models
+namespace JobLog.Models
 {
   public class Profile
   {

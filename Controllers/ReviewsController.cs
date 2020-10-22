@@ -6,7 +6,7 @@ using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AmaZen.Controllers
+namespace JobLog.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]

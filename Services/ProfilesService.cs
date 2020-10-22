@@ -4,7 +4,7 @@ using System.Data;
 using JobLog.Models;
 using JobLog.Repositories;
 
-namespace AmaZen.Services
+namespace JobLog.Services
 {
   public class ProfilesService
   {
