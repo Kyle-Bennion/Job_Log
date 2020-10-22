@@ -38,14 +38,14 @@ namespace JobLog.Services
       {
         throw new Exception("Bad Request");
       }
-      update.ContractorId = original.ContractorId;
+      update.CreatorId = original.CreatorId;
       update.Title = update.Title != null ? update.Title : original.Title;
       update.Body = update.Body != null ? update.Body : original.Body;
 
       return _repo.Edit(update);
     }
 
-    internal String Delete(int id)
+    internal String Delete(int id, string userId)
     {
       var original = GetById(id);
       if (original == null)

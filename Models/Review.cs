@@ -10,6 +10,6 @@ namespace JobLog.Models
     [Range(1, 5)]
     public int Rating { get; set; }
     public string Date { get; set; }
-    public int ContractorId { get; set; }
+    public string CreatorId { get; set; }
   }
 }
