@@ -22,3 +22,17 @@
 -- PRIMARY KEY (id)
 -- );
 -- DROP TABLE contractors;
+
+-- CREATE TABLE bids
+-- (
+--   id INT NOT NULL AUTO_INCREMENT,
+--   jobId  INT NOT NULL,
+--   contractorId INT NOT NULL,
+--   estimate DOUBLE NOT NULL,
+-- Primary comes from the New Table Im Creating THIS IS MY NOTE
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (jobId) REFERENCES jobs(id)
+--   ON DELETE CASCADE,
+--   FOREIGN KEY (contractorId) REFERENCES contractors(id)
+--   ON DELETE CASCADE
+--   );

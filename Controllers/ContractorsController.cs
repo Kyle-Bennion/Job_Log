@@ -39,6 +39,19 @@ namespace JobLog.Controllers
         return BadRequest(e.Message);
       }
     }
+    // THIS IS THE GET JOBS BID Many TO Many
+    [HttpGet("{contractorId}/jobBids")]
+    public ActionResult<Job> GetJobBidsByContractorId(int contractorId)
+    {
+      try
+      {
+        return Ok(_service.GetJobBidsByContractorId(contractorId));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
     [HttpPost]
     public ActionResult<Contractor> Create([FromBody] Contractor newCont)
     {

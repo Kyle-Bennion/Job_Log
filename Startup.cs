@@ -60,6 +60,8 @@ namespace JobLog
       services.AddTransient<JobsRespository>();
       services.AddTransient<ContractorsService>();
       services.AddTransient<ContractorsRepository>();
+      services.AddTransient<BidsService>();
+      services.AddTransient<BidsRepository>();
     }
     private IDbConnection CreateDbConnection()
     {

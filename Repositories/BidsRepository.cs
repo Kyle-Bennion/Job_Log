@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using JobLog.Models;
 using Dapper;
+using System.Collections.Generic;
 
 namespace JobLog.Repositories
 {
@@ -12,14 +13,15 @@ namespace JobLog.Repositories
     {
       _db = db;
     }
-    internal void Create(Bid newBid)
+    internal int Create(Bid newBid)
     {
       string sql = @"
       INSERT INTO bids
-      (jobId, contractorId,bid)
+      (jobId, contractorId,estimate)
       VALUES
-      (@JobId,@ContractorId,@Bid);";
-      _db.Execute(sql, newBid);
+      (@JobId,@ContractorId,@Estimate);
+      SELECT LAST_INSERT_ID();";
+      return _db.ExecuteScalar<int>(sql, newBid);
     }
     internal Bid GetById(int id)
     {
@@ -30,6 +32,16 @@ namespace JobLog.Repositories
     {
       string sql = "DELETE FROM bids WHERE id = @id LIMIT 1;";
       _db.Execute(sql, new { id });
+    }
+
+    internal IEnumerable<JobBidsViewModel> GetByContractorId(int contractorId)
+    {
+      string sql = @"
+      SELECT j.*, b.id AS bidId
+      FROM bids b
+      JOIN jobs j ON j.id = b.jobId 
+      WHERE b.contractorId = @ContractorId;";
+      return _db.Query<JobBidsViewModel>(sql, new { contractorId });
     }
   }
 }

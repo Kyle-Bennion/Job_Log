@@ -11,9 +11,12 @@ namespace JobLog.Services
     {
       _repo = repo;
     }
-    internal void Create(Bid newBid)
+    internal Bid Create(Bid newBid)
     {
-      _repo.Create(newBid);
+
+      int id = _repo.Create(newBid);
+      newBid.Id = id;
+      return newBid;
     }
     internal void Delete(int id)
     {

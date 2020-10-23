@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace JobLog.Controllers
 {
   [ApiController]
-  [Route("api/[controller")]
+  [Route("api/[controller]")]
   public class BidsController : ControllerBase
   {
     private readonly BidsService _service;
@@ -15,19 +15,19 @@ namespace JobLog.Controllers
       _service = service;
     }
     [HttpPost]
-    public ActionResult<string> Create([FromBody] Bid newBid)
+    public ActionResult<Bid> Create([FromBody] Bid newBid)
     {
       try
       {
-        _service.Create(newBid);
-        return Ok("success");
+        Bid created = _service.Create(newBid);
+        return Ok(created);
       }
       catch (Exception e)
       {
         return BadRequest(e.Message);
       }
     }
-    [HttpDelete("{id")]
+    [HttpDelete("{id}")]
     public ActionResult<string> Delete(int id)
     {
       try

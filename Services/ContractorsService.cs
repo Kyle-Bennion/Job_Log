@@ -8,10 +8,12 @@ namespace JobLog.Services
   public class ContractorsService
   {
     private readonly ContractorsRepository _repo;
+    private readonly BidsRepository _brepo;
 
-    public ContractorsService(ContractorsRepository repo)
+    public ContractorsService(ContractorsRepository repo, BidsRepository brepo)
     {
       _repo = repo;
+      _brepo = brepo;
     }
     internal IEnumerable<Contractor> GetAll()
     {
@@ -40,6 +42,11 @@ namespace JobLog.Services
       var data = GetById(id);
       _repo.Delete(id);
       return "Bye Bye Contractor";
+    }
+
+    internal IEnumerable<Job> GetJobBidsByContractorId(int contractorId)
+    {
+      return _brepo.GetByContractorId(contractorId);
     }
   }
 
